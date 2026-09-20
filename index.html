@@ -1,611 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Meridiano 72 — Specialty Coffee</title>
-
-    <meta name="description" content="Meridiano 72 — Specialty coffee from Colombia to Europe. Con los pies en la tierra.">
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f4f0e8;
-            color: #211b17;
-            line-height: 1.6;
-        }
-
-        /* HEADER */
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 24px 6%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(244, 240, 232, 0.92);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(33, 27, 23, 0.08);
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: 4px;
-        }
-
-        .logo span {
-            font-weight: 400;
-        }
-
-        nav {
-            display: flex;
-            gap: 32px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #211b17;
-            font-size: 13px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        nav a:hover {
-            opacity: 0.55;
-        }
-
-        /* HERO */
-
-        .hero {
-            min-height: 100vh;
-            padding: 160px 8% 100px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 850px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .eyebrow {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 28px;
-            opacity: 0.65;
-        }
-
-        h1 {
-            font-family: Georgia, serif;
-            font-size: clamp(60px, 10vw, 150px);
-            line-height: 0.9;
-            font-weight: 400;
-            letter-spacing: -6px;
-            margin-bottom: 40px;
-        }
-
-        h1 em {
-            font-style: italic;
-        }
-
-        .hero-text {
-            max-width: 560px;
-            font-family: Georgia, serif;
-            font-size: 20px;
-            line-height: 1.7;
-            margin-bottom: 45px;
-        }
-
-        .button {
-            display: inline-block;
-            padding: 16px 28px;
-            border: 1px solid #211b17;
-            text-decoration: none;
-            color: #211b17;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 11px;
-            transition: 0.3s ease;
-        }
-
-        .button:hover {
-            background: #211b17;
-            color: #f4f0e8;
-        }
-
-        .circle {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: #d7c2a5;
-            right: -180px;
-            top: 20%;
-            opacity: 0.55;
-        }
-
-        .circle-small {
-            position: absolute;
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            background: #8d654d;
-            right: 13%;
-            bottom: 12%;
-            opacity: 0.7;
-        }
-
-        /* STORY */
-
-        .story {
-            background: #211b17;
-            color: #f4f0e8;
-            padding: 130px 8%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-        }
-
-        .section-label {
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-size: 11px;
-            opacity: 0.55;
-            margin-bottom: 30px;
-        }
-
-        .story h2 {
-            font-family: Georgia, serif;
-            font-weight: 400;
-            font-size: clamp(42px, 6vw, 80px);
-            line-height: 1;
-        }
-
-        .story-text {
-            font-family: Georgia, serif;
-            font-size: 20px;
-            line-height: 1.8;
-            align-self: center;
-        }
-
-        /* COFFEE */
-
-        .coffee {
-            padding: 130px 8%;
-        }
-
-        .coffee-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: end;
-            margin-bottom: 70px;
-        }
-
-        .coffee h2 {
-            font-family: Georgia, serif;
-            font-size: clamp(45px, 6vw, 85px);
-            font-weight: 400;
-            line-height: 1;
-        }
-
-        .coffee-intro {
-            max-width: 350px;
-            font-family: Georgia, serif;
-            font-size: 18px;
-        }
-
-        .coffee-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .coffee-card {
-            min-height: 420px;
-            padding: 35px;
-            background: #ded1bc;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: transform 0.4s ease;
-        }
-
-        .coffee-card:hover {
-            transform: translateY(-8px);
-        }
-
-        .coffee-number {
-            font-size: 11px;
-            letter-spacing: 3px;
-            opacity: 0.55;
-        }
-
-        .coffee-card h3 {
-            font-family: Georgia, serif;
-            font-size: 34px;
-            font-weight: 400;
-            margin-bottom: 15px;
-        }
-
-        .coffee-card p {
-            font-size: 14px;
-            opacity: 0.75;
-        }
-
-        .origin {
-            margin-top: 25px;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* PHILOSOPHY */
-
-        .philosophy {
-            padding: 150px 8%;
-            background: #c7b39a;
-            text-align: center;
-        }
-
-        .philosophy h2 {
-            font-family: Georgia, serif;
-            font-size: clamp(50px, 8vw, 120px);
-            font-weight: 400;
-            line-height: 0.95;
-            max-width: 1100px;
-            margin: auto;
-        }
-
-        .philosophy p {
-            max-width: 600px;
-            margin: 45px auto 0;
-            font-family: Georgia, serif;
-            font-size: 19px;
-            line-height: 1.8;
-        }
-
-        /* CONTACT */
-
-        .contact {
-            padding: 130px 8%;
-            background: #f4f0e8;
-            text-align: center;
-        }
-
-        .contact h2 {
-            font-family: Georgia, serif;
-            font-weight: 400;
-            font-size: clamp(45px, 7vw, 100px);
-            line-height: 1;
-            margin-bottom: 35px;
-        }
-
-        .contact p {
-            font-family: Georgia, serif;
-            font-size: 19px;
-            margin-bottom: 40px;
-        }
-
-        /* FOOTER */
-
-        footer {
-            padding: 35px 8%;
-            background: #211b17;
-            color: #f4f0e8;
-            display: flex;
-            justify-content: space-between;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* MOBILE */
-
-        @media (max-width: 800px) {
-
-            header {
-                padding: 20px;
-            }
-
-            nav {
-                display: none;
-            }
-
-            .hero {
-                padding: 140px 7% 80px;
-            }
-
-            h1 {
-                letter-spacing: -3px;
-            }
-
-            .circle {
-                width: 350px;
-                height: 350px;
-                right: -160px;
-            }
-
-            .story {
-                grid-template-columns: 1fr;
-                gap: 50px;
-                padding: 90px 7%;
-            }
-
-            .coffee {
-                padding: 90px 7%;
-            }
-
-            .coffee-header {
-                display: block;
-            }
-
-            .coffee-intro {
-                margin-top: 30px;
-            }
-
-            .coffee-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .philosophy {
-                padding: 100px 7%;
-            }
-
-            footer {
-                display: block;
-                text-align: center;
-            }
-
-            footer div + div {
-                margin-top: 15px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Meridiano 72 — Specialty Coffee</title>
+
+<meta name="description" content="Meridiano 72 — Colombian specialty coffee. Con los pies en la tierra.">
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #111;
+    color: #fff;
+}
+
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    min-height: 650px;
+    background-image:
+        linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.30)),
+        url("v.2.png");
+    background-size: cover;
+    background-position: center;
+}
+
+nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 30px 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 27px;
+    letter-spacing: 6px;
+    white-space: nowrap;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.radio {
+    border: 1px solid rgba(255,255,255,0.7);
+    padding: 15px 22px;
+}
+
+.hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -42%);
+    text-align: center;
+    width: 90%;
+}
+
+.kicker {
+    font-size: 14px;
+    letter-spacing: 8px;
+    margin-bottom: 38px;
+}
+
+.title {
+    font-family: Georgia, serif;
+    font-size: clamp(55px, 7vw, 105px);
+    font-weight: normal;
+    letter-spacing: 8px;
+    line-height: 1;
+}
+
+.line {
+    width: 45px;
+    height: 1px;
+    background: white;
+    margin: 28px auto;
+    opacity: 0.8;
+}
+
+.tagline {
+    font-size: 17px;
+    letter-spacing: 7px;
+    margin-bottom: 34px;
+}
+
+.button {
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.8);
+    padding: 18px 28px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.location {
+    position: absolute;
+    bottom: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 5px;
+}
+
+.arrow {
+    display: block;
+    margin-top: 14px;
+    font-size: 20px;
+}
+
+@media (max-width: 900px) {
+
+    nav {
+        padding: 24px 20px;
+    }
+
+    .menu a:not(.radio) {
+        display: none;
+    }
+
+    .logo {
+        font-size: 21px;
+        letter-spacing: 4px;
+    }
+
+    .menu {
+        gap: 10px;
+    }
+
+    .kicker {
+        font-size: 10px;
+        letter-spacing: 5px;
+    }
+
+    .title {
+        font-size: 48px;
+        letter-spacing: 4px;
+    }
+
+    .tagline {
+        font-size: 12px;
+        letter-spacing: 4px;
+    }
+
+    .hero {
+        background-position: 55% center;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">MERIDIANO <span>72</span></div>
+<section class="hero">
 
     <nav>
-        <a href="#story">Our story</a>
-        <a href="#coffee">Coffee</a>
-        <a href="#contact">Contact</a>
+
+        <div class="logo">
+            MERIDIANO 72
+        </div>
+
+        <div class="menu">
+
+            <a href="#">Our Story</a>
+            <a href="#">Our Coffees</a>
+            <a href="#">Origins</a>
+            <a href="#">Journal</a>
+            <a href="#">Contact</a>
+            <a href="#">EN⌄</a>
+
+            <a href="#" class="radio">
+                ● &nbsp; RADIO / 72
+            </a>
+
+        </div>
+
     </nav>
-</header>
 
-
-<section class="hero">
 
     <div class="hero-content">
 
-        <div class="eyebrow">
-            Specialty Coffee · Colombia · Europe
+        <div class="kicker">
+            COLOMBIAN SPECIALTY COFFEE
         </div>
 
-        <h1>
-            Coffee<br>
-            with <em>origin.</em>
+        <h1 class="title">
+            MERIDIANO 72
         </h1>
 
-        <p class="hero-text">
-            We bring exceptional Colombian coffee closer to the people
-            who know how to appreciate it.
-        </p>
+        <div class="line"></div>
 
-        <a class="button" href="#coffee">
-            Discover our coffee
+        <div class="tagline">
+            CON LOS PIES EN LA TIERRA.
+        </div>
+
+        <div class="line"></div>
+
+        <a href="#" class="button">
+            Explore our coffees &nbsp; →
         </a>
 
     </div>
 
-    <div class="circle"></div>
-    <div class="circle-small"></div>
 
-</section>
+    <div class="location">
 
+        COLOMBIA
 
-<section class="story" id="story">
-
-    <div>
-        <div class="section-label">01 — Our story</div>
-
-        <h2>
-            A line<br>
-            between<br>
-            two worlds.
-        </h2>
-    </div>
-
-    <div class="story-text">
-
-        <p>
-            Meridiano 72 was born between Colombia and Europe.
-        </p>
-
-        <br>
-
-        <p>
-            A project built around one simple idea:
-            exceptional coffee does not need to shout.
-            It needs to be understood.
-        </p>
-
-        <br>
-
-        <p>
-            We work with carefully selected coffees from Colombia,
-            connecting origin, people and craft with specialty coffee
-            professionals across Europe.
-        </p>
+        <span class="arrow">⌄</span>
 
     </div>
 
 </section>
-
-
-<section class="coffee" id="coffee">
-
-    <div class="coffee-header">
-
-        <div>
-            <div class="section-label">02 — Selected coffees</div>
-
-            <h2>
-                From<br>
-                Colombia.
-            </h2>
-        </div>
-
-        <p class="coffee-intro">
-            Small selections. Distinct origins.
-            Coffees chosen for their character,
-            complexity and traceability.
-        </p>
-
-    </div>
-
-
-    <div class="coffee-grid">
-
-        <article class="coffee-card">
-
-            <div class="coffee-number">01</div>
-
-            <div>
-                <h3>Bourbon Tropical</h3>
-
-                <p>
-                    Caramel · Passion fruit · Watermelon ·
-                    Nuts · Chocolate
-                </p>
-
-                <div class="origin">
-                    Colombia · Quindío
-                </div>
-            </div>
-
-        </article>
-
-
-        <article class="coffee-card">
-
-            <div class="coffee-number">02</div>
-
-            <div>
-                <h3>Bourbon Amarillo</h3>
-
-                <p>
-                    Strawberry · Green apple · Cacao ·
-                    Woody · Spicy
-                </p>
-
-                <div class="origin">
-                    Colombia · Quindío
-                </div>
-            </div>
-
-        </article>
-
-
-        <article class="coffee-card">
-
-            <div class="coffee-number">03</div>
-
-            <div>
-                <h3>Tabi Lavado</h3>
-
-                <p>
-                    A carefully selected washed coffee
-                    from high-altitude Colombian farms.
-                </p>
-
-                <div class="origin">
-                    Colombia · 1900 m
-                </div>
-            </div>
-
-        </article>
-
-    </div>
-
-</section>
-
-
-<section class="philosophy">
-
-    <div class="section-label">
-        03 — Our philosophy
-    </div>
-
-    <h2>
-        Con los pies<br>
-        en la tierra.
-    </h2>
-
-    <p>
-        Behind every coffee there is a landscape,
-        a producer, a family and a story worth knowing.
-    </p>
-
-</section>
-
-
-<section class="contact" id="contact">
-
-    <div class="section-label">
-        04 — Contact
-    </div>
-
-    <h2>
-        Let's talk<br>
-        about coffee.
-    </h2>
-
-    <p>
-        For specialty coffee shops, restaurants,
-        chefs and coffee professionals.
-    </p>
-
-    <a class="button" href="mailto:hello@meridiano72.com">
-        Get in touch
-    </a>
-
-</section>
-
-
-<footer>
-
-    <div>
-        © 2026 Meridiano 72
-    </div>
-
-    <div>
-        Specialty Coffee · Colombia
-    </div>
-
-</footer>
 
 </body>
 </html>
