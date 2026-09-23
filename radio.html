@@ -315,18 +315,63 @@
             margin-top: 25px;
         }
 
+
+        /* Base button */
+
         .control {
-            border: none;
+            appearance: none;
+            -webkit-appearance: none;
+
+            border: 0;
             padding: 0;
+            margin: 0;
+
+            width: 18px;
+            height: 18px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             background: transparent;
             color: #151515;
 
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 18px;
+            font-size: 0;
 
             cursor: pointer;
+
+            -webkit-tap-highlight-color: transparent;
         }
+
+
+        /* =========================================
+           PREVIOUS / NEXT
+        ========================================= */
+
+        .control-triangle {
+            display: block;
+
+            width: 0;
+            height: 0;
+        }
+
+        .previous-icon {
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid transparent;
+            border-right: 10px solid #151515;
+        }
+
+        .next-icon {
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid transparent;
+            border-left: 10px solid #151515;
+        }
+
+
+        /* =========================================
+           PLAY BUTTON
+        ========================================= */
 
         .play {
             width: 48px;
@@ -335,8 +380,67 @@
             border: 1px solid #222;
             border-radius: 50%;
 
-            font-size: 18px;
+            flex: 0 0 48px;
         }
+
+
+        /* Play triangle */
+
+        .play-icon {
+            display: block;
+
+            width: 0;
+            height: 0;
+
+            margin-left: 3px;
+
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-left: 12px solid #151515;
+        }
+
+
+        /* =========================================
+           PAUSE STATE
+        ========================================= */
+
+        .play.is-playing .play-icon {
+            position: relative;
+
+            width: 11px;
+            height: 16px;
+
+            margin-left: 0;
+
+            border: 0;
+        }
+
+        .play.is-playing .play-icon::before,
+        .play.is-playing .play-icon::after {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            width: 3px;
+            height: 16px;
+
+            background: #151515;
+        }
+
+        .play.is-playing .play-icon::before {
+            left: 1px;
+        }
+
+        .play.is-playing .play-icon::after {
+            right: 1px;
+        }
+
+
+        /* =========================================
+           VOLUME
+        ========================================= */
 
         .volume {
             display: flex;
@@ -346,6 +450,59 @@
 
             margin-left: 8px;
         }
+
+
+        /* CSS speaker icon */
+
+        .volume-icon {
+            position: relative;
+
+            width: 20px;
+            height: 18px;
+
+            display: block;
+
+            flex: 0 0 20px;
+        }
+
+
+        /* Speaker body */
+
+        .volume-icon::before {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 6px;
+
+            width: 5px;
+            height: 7px;
+
+            background: #151515;
+        }
+
+
+        /* Speaker cone */
+
+        .volume-icon::after {
+            content: "";
+
+            position: absolute;
+
+            left: 4px;
+            top: 3px;
+
+            width: 0;
+            height: 0;
+
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid transparent;
+            border-right: 8px solid #151515;
+        }
+
+
+        /* Volume line */
 
         .volume-line {
             position: relative;
@@ -721,6 +878,8 @@
             .play {
                 width: 44px;
                 height: 44px;
+
+                flex-basis: 44px;
             }
 
             .volume-line {
@@ -855,17 +1014,28 @@
                         </div>
 
 
+                        <!-- CONTROLS -->
+
                         <div class="controls">
 
+
+                            <!-- PREVIOUS -->
 
                             <button
                                 type="button"
                                 class="control"
                                 aria-label="Previous track"
                             >
-                                ◀
+
+                                <span
+                                    class="control-triangle previous-icon"
+                                    aria-hidden="true"
+                                ></span>
+
                             </button>
 
+
+                            <!-- PLAY -->
 
                             <button
                                 type="button"
@@ -874,24 +1044,39 @@
                                 onclick="togglePlay()"
                                 aria-label="Play"
                             >
-                                ▶
+
+                                <span
+                                    class="play-icon"
+                                    aria-hidden="true"
+                                ></span>
+
                             </button>
 
+
+                            <!-- NEXT -->
 
                             <button
                                 type="button"
                                 class="control"
                                 aria-label="Next track"
                             >
-                                ▶
+
+                                <span
+                                    class="control-triangle next-icon"
+                                    aria-hidden="true"
+                                ></span>
+
                             </button>
 
 
+                            <!-- VOLUME -->
+
                             <div class="volume">
 
-                                <span aria-hidden="true">
-                                    ◖
-                                </span>
+                                <span
+                                    class="volume-icon"
+                                    aria-hidden="true"
+                                ></span>
 
                                 <div class="volume-line">
 
@@ -903,6 +1088,7 @@
                                 </div>
 
                             </div>
+
 
                         </div>
 
@@ -1035,13 +1221,26 @@
 
             playing = !playing;
 
-            button.textContent =
-                playing ? "Ⅱ" : "▶";
+            if (playing) {
 
-            button.setAttribute(
-                "aria-label",
-                playing ? "Pause" : "Play"
-            );
+                button.classList.add("is-playing");
+
+                button.setAttribute(
+                    "aria-label",
+                    "Pause"
+                );
+
+            } else {
+
+                button.classList.remove("is-playing");
+
+                button.setAttribute(
+                    "aria-label",
+                    "Play"
+                );
+
+            }
+
         }
 
     </script>
